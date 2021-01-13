@@ -1,5 +1,6 @@
+#
 # Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017-2018 The The LineageOS Project
+# Copyright (C) 2017-2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,29 +13,33 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit from zl1 device
-$(call inherit-product, device/leeco/zl1/device.mk)
+# Inherit from kagura device
+$(call inherit-product, device/sony/kagura/device.mk)
 
-# Inherit some common LineageOS stuff.
+# Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-PRODUCT_NAME := lineage_zl1
-PRODUCT_DEVICE := zl1
-PRODUCT_MANUFACTURER := LeEco
-PRODUCT_BRAND := LeEco
+# Device identifier. This must come after all inclusions.
+PRODUCT_NAME := lineage_kagura
+PRODUCT_DEVICE := kagura
+PRODUCT_BRAND := Sony
+PRODUCT_MODEL := Xperia XZ
+PRODUCT_MANUFACTURER := Sony
 
-PRODUCT_GMS_CLIENTID_BASE := android-leeco
+PRODUCT_GMS_CLIENTID_BASE := android-sony
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    TARGET_DEVICE=le_zl1 \
-    PRODUCT_NAME=ZL1_CN \
-    PRIVATE_BUILD_DESC="le_zl1-user 6.0.1 WEXNAOP5802101261S eng.letv.20170126.120318 release-keys"
+    TARGET_DEVICE="kagura_dsds" \
+    PRODUCT_NAME="kagura_dsds" \
+    PRIVATE_BUILD_DESC="kagura_dsds-user 8.0.0 OPR1.170623.026 1 dev-keys"
 
-BUILD_FINGERPRINT := LeEco/ZL1_NA/le_zl1:6.0.1/WEXNAOP5802101261S/letv01261206:user/release-keys
+# Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
+BUILD_FINGERPRINT := "Sony/kagura_dsds/kagura_dsds:8.0.0/OPR1.170623.026/1:user/dev-keys"
 
-TARGET_VENDOR := leeco
+TARGET_VENDOR := Sony

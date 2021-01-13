@@ -1,5 +1,5 @@
 # Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2021 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,40 +21,29 @@
 # definition file).
 #
 
-# inherit from msm8996-common
--include device/leeco/msm8996-common/BoardConfigCommon.mk
+# inherit from tone-common
+-include device/sony/tone-common/BoardConfigCommon.mk
 
-DEVICE_PATH := device/leeco/zl1
-
-TARGET_SPECIFIC_HEADER_PATH += $(DEVICE_PATH)/include
+DEVICE_PATH := device/sony/kagura
 
 # Assertions
-TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
-TARGET_OTA_ASSERT_DEVICE := le_zl0,le_zl1,LEX720,LEX722,LEX727,zl0,zl1
+TARGET_OTA_ASSERT_DEVICE := kagura,kagura_dsds,F8331,F8332
 
 # Kernel
-BOARD_KERNEL_TAGS_OFFSET := 0x00000100
-BOARD_RAMDISK_OFFSET     := 0x01000000
-
-TARGET_KERNEL_CONFIG := lineage_zl1_defconfig
-
-# HIDL
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
+TARGET_KERNEL_CONFIG := tone_kagura_defconfig
 
 # Partitions
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 58134835200
+BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 6197084160
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 23857184768
+
+# Inherit cash
+TARGET_USES_CASH_EXTENSION := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 #BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/public
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 
-# Shims
-TARGET_LD_SHIM_LIBS := \
-   /vendor/bin/gx_fpd|fakelogprint.so \
-   /vendor/bin/gx_fpd|libshims_gxfpd.so \
-   /vendor/lib64/hw/gxfingerprint5118m.default.so|fakelogprint.so \
-   /vendor/lib64/hw/fingerprint.msm8996.so|fakelogprint.so
-
 # inherit from the proprietary version
--include vendor/leeco/zl1/BoardConfigVendor.mk
+-include vendor/sony/kagura/BoardConfigVendor.mk

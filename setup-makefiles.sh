@@ -8,8 +8,8 @@
 
 set -e
 
-export DEVICE=zl1
-export DEVICE_COMMON=msm8996-common
-export VENDOR=leeco
+export DEVICE=kagura
+export DEVICE_COMMON=tone-common
+export VENDOR=sony
 
 "./../../${VENDOR}/${DEVICE_COMMON}/setup-makefiles.sh" "$@"
